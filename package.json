@@ -1,0 +1,6 @@
+{
+  "name": "slides",
+  "devDependencies": {
+    "prettier": "^3.0.3"
+  }
+}
