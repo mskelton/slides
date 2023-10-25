@@ -17,16 +17,26 @@ What we'll cover in this session:
 <v-clicks>
 
 - User-driven development
-- Using Apollo/GraphQL effectively
+- Effective Apollo/GraphQL
 - Writing modular code
 - Tailwind do's and dont's
 - Component library best practices
 
 </v-clicks>
 
+<!-- prettier-ignore-start -->
+
+---
+layout: cover
 ---
 
-## User-driven development
+<!-- prettier-ignore-end -->
+
+# User-driven development
+
+---
+
+## Why care about the user?
 
 Understanding users is critically important in frontend development.
 
@@ -74,9 +84,19 @@ are serving.
 Just because one feature serves the engineering user, doesn't mean they all
 should 😁
 
+<!-- prettier-ignore-start -->
+
+---
+layout: cover
 ---
 
-## Using Apollo/GraphQL effectively
+<!-- prettier-ignore-end -->
+
+# Effective Apollo/GraphQL
+
+---
+
+## Apollo is a critical piece of our stack
 
 We use Apollo and GraphQL for the majority of our data fetching on the frontend.
 
@@ -316,13 +336,87 @@ updatePolicy({
 })
 ```
 
----
-
-## Tailwind do's and dont's
+<!-- prettier-ignore-start -->
 
 ---
+layout: cover
+---
 
-##
+<!-- prettier-ignore-end -->
+
+# Tailwind do's and dont's
+
+---
+
+## Use inline styles extremely sparingly
+
+Always use Tailwind classes for styling elements.
+
+Inline styles should be used in very few and very specific circumstances.
+
+**Don't**
+
+```jsx
+<p style={{ margin: "12px" }} />
+```
+
+**Do**
+
+```jsx
+<p class="m-3" />
+```
+
+---
+
+## Avoid arbitrary values when possible
+
+Tailwind's
+[arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values)
+syntax is great, but should only be used if needed.
+
+**Don't**
+
+```jsx
+<p class="m-[12px]" />
+```
+
+**Do**
+
+```jsx
+<p class="m-3" />
+```
+
+**Remember**
+
+- When possible, use builtin values.
+- Try to use the closest builtin value rather than a custom value
+
+---
+
+## Don't interpolate class names
+
+Tailwind builds a CSS file based on the class names it finds in the project.
+
+Interpolating class names prevents Tailwind from finding them.
+
+Interpolation may appear to work if the class is found elsewhere, but **NEVER**
+rely on this.
+
+**Don't**
+
+```jsx
+const left = 10
+
+<p className={`left-[${left}px]`} />
+```
+
+**Do**
+
+```jsx
+const left = 10
+
+<p style={{ left: `${left}px` }} />
+```
 
 ---
 
