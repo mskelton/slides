@@ -1,6 +1,11 @@
 {
   "name": "slides",
+  "scripts": {
+    "dev": "slidev"
+  },
   "devDependencies": {
+    "@slidev/cli": "^0.43.7",
+    "@slidev/theme-default": "^0.21.2",
     "prettier": "^3.0.3"
   }
 }
