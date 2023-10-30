@@ -242,7 +242,13 @@ There are two main ways to update the cache:
 
 </v-clicks>
 
+<!-- prettier-ignore-start -->
+
 ---
+clicks: 2
+---
+
+<!-- prettier-ignore-end -->
 
 ## Updating the cache automatically
 
@@ -259,10 +265,14 @@ mutation UpdatePolicy {
 }
 ```
 
+<v-clicks at="0">
+
 The `name` and `totalPremium` values will be updated in the cache when the
 request finishes.
 
 For this to work, you **MUST** provide an `id` in the response.
+
+</v-clicks>
 
 ---
 
