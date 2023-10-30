@@ -6,6 +6,7 @@
   "devDependencies": {
     "@slidev/cli": "^0.43.7",
     "@slidev/theme-default": "^0.21.2",
+    "@types/node": "^20.8.9",
     "prettier": "^3.0.3"
   }
 }

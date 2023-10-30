@@ -1,6 +1,7 @@
 ---
 layout: cover
 transition: slide-left
+highlighter: "shiki"
 ---
 
 # Frontend 101
