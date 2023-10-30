@@ -27,6 +27,10 @@ What we'll cover in this session:
 
 <!-- prettier-ignore-start -->
 
+<!--
+
+-->
+
 ---
 layout: cover
 ---
@@ -86,6 +90,10 @@ Just because one feature serves the engineering user, doesn't mean they all
 should 😁
 
 <!-- prettier-ignore-start -->
+
+<!--
+
+-->
 
 ---
 layout: cover
@@ -245,6 +253,10 @@ There are two main ways to update the cache:
 
 <!-- prettier-ignore-start -->
 
+<!--
+
+-->
+
 ---
 clicks: 2
 ---
@@ -349,6 +361,10 @@ updatePolicy({
 
 <!-- prettier-ignore-start -->
 
+<!--
+
+-->
+
 ---
 layout: cover
 ---
@@ -404,6 +420,24 @@ syntax is great, but should only be used if needed.
 
 ---
 
+## When to use arbitrary values
+
+Arbitrary values aren't always bad, some good use cases for them include:
+
+<v-clicks>
+
+- Animations - `animate-[spin_1s_ease]`
+- Transitioning specific properties - `transition-[margin]`
+- Grid column setup - `grid-cols-[repeat(auto-fill,minmax(120px,1fr))]`
+- Referencing CSS variables - `h-[var(--nav-height)]`
+- Complex CSS expressions `[&:has(.child:hover)]:bg-gray-50`
+
+</v-clicks>
+
+<!-- Mention that complex CSS expressions should be used carefully -->
+
+---
+
 ## Don't interpolate class names
 
 Tailwind builds a CSS file based on the class names it finds in the project.
@@ -429,13 +463,35 @@ const left = 10
 <p style={{ left: `${left}px` }} />
 ```
 
+<!-- prettier-ignore-start -->
+
+<!--
+
+-->
+
+---
+layout: cover
 ---
 
-##
+<!-- prettier-ignore-end -->
+
+# Component library best practices
 
 ---
 
-##
+## Export Plenty of Types
+
+Exporting types from components helps when building wrapper components.
+
+Useful to export prop types, as well as important sub-types.
+
+```typescript
+export type MyComponentVariant = "default" | "compact"
+
+export interface MyComponentProps {
+  variant?: MyComponentVariant
+}
+```
 
 ---
 
