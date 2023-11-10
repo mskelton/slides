@@ -3,5 +3,5 @@
 ## Intro
 
 ```bash
-bun dev slides/intro.md
+pnpm dev slides/intro.md
 ```
