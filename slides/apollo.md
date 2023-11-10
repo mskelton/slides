@@ -25,17 +25,11 @@ What we'll cover in this session:
 
 </v-clicks>
 
-<!-- prettier-ignore-start -->
-
-<!--
-
--->
-
 ---
+
+```yml
 layout: cover
----
-
-<!-- prettier-ignore-end -->
+```
 
 # Understanding the Apollo Cache
 
@@ -43,17 +37,11 @@ layout: cover
 
 ## Yo
 
-<!-- prettier-ignore-start -->
-
-<!--
-
--->
-
 ---
+
+```yml
 layout: cover
----
-
-<!-- prettier-ignore-end -->
+```
 
 # Understanding the Apollo Cache
 
@@ -61,17 +49,11 @@ layout: cover
 
 ## Hi
 
-<!-- prettier-ignore-start -->
-
-<!--
-
--->
-
 ---
+
+```yml
 layout: cover
----
-
-<!-- prettier-ignore-end -->
+```
 
 # Understanding the Apollo Cache
 

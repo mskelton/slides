@@ -25,17 +25,11 @@ What we'll cover in this session:
 
 </v-clicks>
 
-<!-- prettier-ignore-start -->
-
-<!--
-
--->
-
 ---
+
+```yml
 layout: cover
----
-
-<!-- prettier-ignore-end -->
+```
 
 # User-driven development
 
@@ -89,17 +83,11 @@ are serving.
 Just because one feature serves the engineering user, doesn't mean they all
 should 😁
 
-<!-- prettier-ignore-start -->
-
-<!--
-
--->
-
 ---
+
+```yml
 layout: cover
----
-
-<!-- prettier-ignore-end -->
+```
 
 # Effective Apollo/GraphQL
 
@@ -251,17 +239,11 @@ There are two main ways to update the cache:
 
 </v-clicks>
 
-<!-- prettier-ignore-start -->
-
-<!--
-
--->
-
 ---
+
+```yml
 clicks: 2
----
-
-<!-- prettier-ignore-end -->
+```
 
 ## Updating the cache automatically
 
@@ -359,17 +341,11 @@ updatePolicy({
 })
 ```
 
-<!-- prettier-ignore-start -->
-
-<!--
-
--->
-
 ---
+
+```yml
 layout: cover
----
-
-<!-- prettier-ignore-end -->
+```
 
 # Tailwind do's and dont's
 
@@ -463,17 +439,11 @@ const left = 10
 <p style={{ left: `${left}px` }} />
 ```
 
-<!-- prettier-ignore-start -->
-
-<!--
-
--->
-
 ---
+
+```yml
 layout: cover
----
-
-<!-- prettier-ignore-end -->
+```
 
 # Component library best practices
 
@@ -501,8 +471,6 @@ Small components give users of your component library more flexibility
 
 Also, with small components you can compose them together to build different
 abstractions.
-
-
 
 ---
 
