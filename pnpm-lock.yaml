@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@slidev/parser@0.43.15':
+    hash: izkor3zryi3tngnt6dtlkkjvga
+    path: patches/@slidev__parser@0.43.15.patch
+
 devDependencies:
   '@slidev/cli':
     specifier: ^0.43.7
@@ -776,7 +781,7 @@ packages:
       '@lillallol/outline-pdf': 4.0.0
       '@mrdrogdrog/optional': 1.2.1
       '@slidev/client': 0.43.15(postcss@8.4.31)(vite@4.5.0)
-      '@slidev/parser': 0.43.15
+      '@slidev/parser': 0.43.15(patch_hash=izkor3zryi3tngnt6dtlkkjvga)
       '@slidev/types': 0.43.15
       '@unocss/extractor-mdc': 0.57.3
       '@unocss/reset': 0.57.3
@@ -860,7 +865,7 @@ packages:
     engines: {node: '>=18.0.0'}
     dependencies:
       '@antfu/utils': 0.7.6
-      '@slidev/parser': 0.43.15
+      '@slidev/parser': 0.43.15(patch_hash=izkor3zryi3tngnt6dtlkkjvga)
       '@slidev/types': 0.43.15
       '@unhead/vue': 1.8.3(vue@3.3.8)
       '@unocss/reset': 0.57.3
@@ -897,13 +902,14 @@ packages:
       - vite
     dev: true
 
-  /@slidev/parser@0.43.15:
+  /@slidev/parser@0.43.15(patch_hash=izkor3zryi3tngnt6dtlkkjvga):
     resolution: {integrity: sha512-1iBD9V4kbZEqfDfmNt5lv/0LDFDiUL0ZwsLdAfJzRwDxJnd0XJ21kuR+iOpSr4qA6At0aW8Zf/yYDzf+x0MauQ==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@slidev/types': 0.43.15
       js-yaml: 4.1.0
     dev: true
+    patched: true
 
   /@slidev/theme-default@0.21.2:
     resolution: {integrity: sha512-neUucFs2YrRZZd73QwvLTyRG/o1nerDFUR5t8YAmXVLTMzWfY71flQ6aAhjYf+WjsozYsOHcxi/pZtIzZ4VhTQ==}

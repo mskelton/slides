@@ -1,5 +1,6 @@
 {
   "name": "slides",
+  "packageManager": "pnpm@8.10.2",
   "scripts": {
     "dev": "slidev"
   },
@@ -9,5 +10,9 @@
     "@types/node": "^20.8.9",
     "prettier": "^3.0.3"
   },
-  "packageManager": "pnpm@8.10.2"
+  "pnpm": {
+    "patchedDependencies": {
+      "@slidev/parser@0.43.15": "patches/@slidev__parser@0.43.15.patch"
+    }
+  }
 }
