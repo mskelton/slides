@@ -495,7 +495,14 @@ export interface MyComponentProps {
 
 ---
 
-##
+## Build Small Components
+
+Small components give users of your component library more flexibility
+
+Also, with small components you can compose them together to build different
+abstractions.
+
+
 
 ---
 
