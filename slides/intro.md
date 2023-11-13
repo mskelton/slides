@@ -472,13 +472,108 @@ Small components give users of your component library more flexibility
 Also, with small components you can compose them together to build different
 abstractions.
 
+First, let's look at our current `Select` component.
+
+```javascript
+<Select
+  label="Favorite Animal"
+  options={[
+    { display: "Aardvark", value: "Aardvark" },
+    { display: "Cat", value: "Cat" },
+    { display: "Dog", value: "Dog" },
+  ]}
+/>
+```
+
 ---
 
-##
+## Breaking Components Apart
+
+Now let's take a look at how you might do this using small components.
+
+As you can see, while more verbose, we have smaller and more reusable components
+that create the final component.
+
+```javascript
+<Select>
+  <Label>Favorite Animal</Label>
+  <Button>
+    <SelectValue />
+  </Button>
+  <Popover>
+    <ListBox>
+      <ListBoxItem>Aardvark</ListBoxItem>
+      <ListBoxItem>Cat</ListBoxItem>
+      <ListBoxItem>Dog</ListBoxItem>
+    </ListBox>
+  </Popover>
+</Select>
+```
 
 ---
 
-##
+## Why is this Beneficial?
+
+If we were to build a `Menu` component, we might use some very similar code to
+our `Select` example.
+
+By making small, reusable components, we don't have to rebuild a popover or a
+listbox, we just use those pieces.
+
+```javascript
+<Menu>
+  <Button>Open</Button>
+  <Popover>
+    <ListBox>
+      <ListBoxItem>Aardvark</ListBoxItem>
+      <ListBoxItem>Cat</ListBoxItem>
+      <ListBoxItem>Dog</ListBoxItem>
+    </ListBox>
+  </Popover>
+</Menu>
+```
+
+---
+
+```yml
+layout: two-cols-header
+```
+
+## Abstractions Come Naturally
+
+One of the great things about building small components, is common abstractions
+emerge naturally.
+
+`FormModal` is a great example of this.
+
+::left::
+
+```javascript
+<Modal>
+  {({ close }) => (
+    <BaseForm
+      onSubmit={async (input) => {
+        // ...
+        close()
+      }}
+    >
+      {({ form }) => <p>Content</p>}
+    </BaseForm>
+  )}
+</Modal>
+```
+
+::right::
+
+```javascript
+<FormModal
+  onSubmit={async (input) => {
+    // ...
+  }}
+>
+  {({ form }) => <p>Content</p>}
+</FormModal>
+```
 
 ---
 

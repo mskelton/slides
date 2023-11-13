@@ -1,0 +1,4 @@
+.two-cols-header {
+  grid-template-rows: auto 1fr !important;
+  column-gap: 16px;
+}
