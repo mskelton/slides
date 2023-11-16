@@ -436,35 +436,3 @@ updatePolicy({
   ],
 })
 ```
-
-```yml
-layout: cover
-```
-
-# Understanding the Apollo Cache
-
----
-
-## Yo
-
----
-
-```yml
-layout: cover
-```
-
-# Understanding the Apollo Cache
-
----
-
-## Hi
-
----
-
-```yml
-layout: cover
-```
-
-# Understanding the Apollo Cache
-
----
