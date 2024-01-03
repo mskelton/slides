@@ -59,7 +59,7 @@ data.
 
 Let's look at an example query:
 
-```javascript {all|7-8|9-10|11-12}
+```js {all|7-8|9-10|11-12}
 const { data, loading, error } = useGetLayoutQuery({
   variables: {
     id: "123",
@@ -91,7 +91,7 @@ Finally we can display our UI.
 
 Mutations look fairly similar, but they are executed as a result of an action:
 
-```javascript
+```js
 const [mutate, { loading }] = useUpdateLayoutMutation()
 
 async function handleSave() {
@@ -128,7 +128,7 @@ Or they might happen after some condition is met (modal opened).
 
 You can wait to fetch data until a user action such as filtering in a combobox.
 
-```javascript
+```js
 const [searchAccounts] = useSearchAccountsLazyQuery()
 
 const list = useAsyncList({
@@ -160,7 +160,7 @@ condition is met. For example:
 
 <v-clicks>
 
-```javascript {1,6}
+```js {1,6}
 const [isOpen, setIsOpen] = useState(false)
 const { data, loading, error } = useGetLayoutQuery({
   variables: {
@@ -374,7 +374,7 @@ cache.
 
 The `update` function provides the response data from the mutation.
 
-```typescript {7-12}
+```ts {7-12}
 updatePolicy({
   variables: {
     policyId,
@@ -399,7 +399,7 @@ When you know the data that will be returned, use an optimistic response.
 Optimistic responses improve the user experience, and help prevent frontend race
 conditions.
 
-```typescript {3-8}
+```ts {3-8}
 updatePolicy({
   // ...
   optimisticResponse: {
@@ -427,7 +427,7 @@ avoid this whenever possible.
 
 Re-fetching has a much higher cost on performance and user experience.
 
-```typescript {3-6}
+```ts {3-6}
 updatePolicy({
   // ...
   awaitRefetchQueries: true,
@@ -436,3 +436,211 @@ updatePolicy({
   ],
 })
 ```
+
+---
+
+```yml
+layout: cover
+```
+
+# Manual Cache Modification
+
+---
+
+## Updating existing data
+
+While it's preferable to let Apollo automatically update the cache, sometimes
+you need to manually update the cache. Tables are the most common reason where
+automatic caching will cause race conditions.
+
+Let's see an example of what this might look like.
+
+```ts
+updateTableColumn({
+  // ...
+  update: (cache, { data }) => {
+    cache.modify({
+      id: cache.identify(data?.updateTableColumn ?? {}),
+      fields: {
+        sortable: () => true,
+      },
+    })
+  },
+})
+```
+
+<!--
+Identifying the object in the cache is key.  In this example we are using cache.identify using the returned object.
+
+In a real-world scenario, you likely will be iterating over a list of fields, or specifying key/value pairs of fields using the syntax we saw earlier.
+-->
+
+---
+
+## Explaining cache.identify
+
+The `cache.identify` function is a simple utility to make it easier to generate
+cache references from GraphQL objects. Under the hood, it looks something like
+this:
+
+```js
+cache.identify = ({ __typename, id }) => {
+  return `${__typename}:${id}`
+}
+```
+
+This is very simplified and missing much of the details of what Apollo does to
+determine cache ids based on `keyFields`, but the idea is similar.
+
+In general, it's best to pass returned objects to `cache.identify` when doing
+manual cache modification.
+
+---
+
+## Adding data to a list
+
+When adding an item to a list, the caching is a little bit more complex. Instead
+of just updating fields, we need to add the newly created object to the parent
+list in which it lives.
+
+```ts
+createTableColumnMutation({
+  update(cache, { data }) {
+    if (!data) return
+
+    cache.modify({
+      id: cache.identify(table),
+      fields: {
+        columns(prev, { toReference }) {
+          return [...prev, toReference(data.createTableColumn)]
+        },
+      },
+    })
+  },
+})
+```
+
+<!--
+This example shows creating a table column and adding it to the parent table. We use the `toReference` function to convert the returned data into a reference object so the parent table will refer to the cached object, rather than static data.
+-->
+
+---
+
+## Removing data from a list
+
+When removing data from a list, we can `filter` through the list of data in the
+parent object and use `readField` to find the item to remove.
+
+```ts
+deleteTableColumn({
+  update(cache, { data }) {
+    if (!data) return
+
+    cache.modify({
+      id: cache.identify(table),
+      fields: {
+        columns(prev, { readField }) {
+          return prev.filter((ref: Reference) => id !== readField("id", ref))
+        },
+      },
+    })
+  },
+})
+```
+
+---
+
+## Handling many-to-many relationships
+
+Many-to-many relationships are a lot more complicated to manage with manual
+caching. Let's take a look at some real code.
+
+---
+
+```yml
+layout:cover
+```
+
+# Using Fetch Policies
+
+---
+
+## What are fetch policies?
+
+Fetch policies allow you to control how Apollo manages refetching potentially
+stale data.
+
+In this section, we'll review all the fetch policies and when you would use
+each.
+
+---
+
+## `cache-first`
+
+If Apollo already has **all** the data it needs for a query in the cache, it
+will not refetch the data and will use the already cached data.
+
+This is the default fetch policy and is always preferred as it reduces data
+fetching and network traffic.
+
+---
+
+## `cache-and-network`
+
+Apollo will use any data from the cache if it exists, but also refetch the data
+from the server.
+
+This is useful to provide an immediate response to the user but still refetch in
+the background in case of stale data.
+
+Be cautious with this one to ensure that when the data loads, it doesn't cause
+content flashing if the user is currently viewing data.
+
+---
+
+## `network-only`
+
+Apollo will ignore the cache and always refetch the query. Results will be
+stored in the cache for other queries and such, but this query will never read
+from the cache.
+
+**Avoid this fetch policy at all costs!**
+
+---
+
+## `cache-only`
+
+Only pull data from the cache, never fetch from the server. If the data doesn't
+exist, throw an error.
+
+This one is pretty rare.
+
+---
+
+## `no-cache`
+
+Basically the same as `network-only`, but the results of this query should not
+be stored in the cache.
+
+This is useful in scenarios where you have large data collections that you don't
+need to keep in the cache.
+
+---
+
+## `standby`
+
+This is the same as `cache-first`, but it does not change when fields in the
+cache are updated.
+
+Unsure of any times when this would make sense for us.
+
+---
+
+```yml
+layout: cover
+```
+
+# Thank You!
+
+For more software engineering content, checkout my blog at
+[mskelton.dev](https://mskelton.dev/blog).
