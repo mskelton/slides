@@ -3,7 +3,7 @@
   "packageManager": "pnpm@8.10.2",
   "scripts": {
     "dev": "slidev",
-    "build": "slidev build slides/*.md"
+    "build": "./build.sh"
   },
   "devDependencies": {
     "@iconify-json/grommet-icons": "^1.1.10",
