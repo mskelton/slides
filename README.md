@@ -2,9 +2,9 @@
 
 ## Slides
 
-- [Intro](https://federato.github.io/frontend-101/intro)
-- [Apollo Deep Dive](https://federato.github.io/frontend-101/apollo)
-- [Building Rollup Plugins](https://federato.github.io/frontend-101/rollup-plugins)
+- [Intro](https://mskelton.github.io/frontend-101/intro)
+- [Apollo Deep Dive](https://mskelton.github.io/frontend-101/apollo)
+- [Building Rollup Plugins](https://mskelton.github.io/frontend-101/rollup-plugins)
 
 ## Running locally
 
