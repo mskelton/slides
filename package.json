@@ -2,7 +2,8 @@
   "name": "slides",
   "packageManager": "pnpm@8.10.2",
   "scripts": {
-    "dev": "slidev"
+    "dev": "slidev",
+    "build": "slidev build slides/*.md"
   },
   "devDependencies": {
     "@iconify-json/grommet-icons": "^1.1.10",
