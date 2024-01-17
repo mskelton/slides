@@ -1,13 +1,9 @@
-# Frontend 101
+# Slides
 
-## Slides
+- [Apollo Deep Dive](https://slides.mskelton.dev/apollo)
 
-- [Intro](https://mskelton.github.io/frontend-101/intro)
-- [Apollo Deep Dive](https://mskelton.github.io/frontend-101/apollo)
-- [Building Rollup Plugins](https://mskelton.github.io/frontend-101/rollup-plugins)
-
-## Running locally
+## Development
 
 ```bash
-pnpm dev slides/intro.md
+pnpm dev slides/apollo.md
 ```
