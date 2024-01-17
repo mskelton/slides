@@ -219,18 +219,18 @@ cache entries:
 ```json
 {
   "ROOT_QUERY": {
-    "accountById(accountId: 12})": {
-      "__ref": "NBAccountsType:12"
+    "accountById(accountId: 12)": {
+      "__ref": "Account:12"
     }
   },
-  "NBAccountsType:12": {
-    "__typename": "NBAccountsType",
+  "Account:12": {
+    "__typename": "Account",
     "id": "12",
     "name": "Mark's Account",
-    "users": [{ "__ref": "UserType:18" }]
+    "users": [{ "__ref": "User:18" }]
   },
-  "UserType:18": {
-    "__typename": "UserType",
+  "User:18": {
+    "__typename": "User",
     "id": "18",
     "name": "Mark Skelton"
   }
@@ -257,11 +257,11 @@ By default, this is a combination of the `__typename` and `id` fields.
 
 <v-click>
 
-For example, this query result is stored with a cache id of `NBAccountsType:12`:
+For example, this query result is stored with a cache id of `Account:12`:
 
 ```json {2-3}
 {
-  "__typename": "NBAccountsType",
+  "__typename": "Account",
   "id": 12,
   "name": "Mark's Account"
 }
@@ -404,7 +404,7 @@ updatePolicy({
   // ...
   optimisticResponse: {
     updatePolicy: {
-      __typename: "PolicyType",
+      __typename: "Policy",
       id: policyId,
     },
   },

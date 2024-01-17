@@ -326,11 +326,11 @@ emerge naturally.
 
 ---
 
-## Thanks!
+```yml
+layout: cover
+```
 
-Big thanks to Tim for encouraging me to start this series, and for everyone here
-joining and participating in the fun!
+# Thank You!
 
-### Further Reading
-
--
+For more software engineering content, checkout my blog at
+[mskelton.dev](https://mskelton.dev/blog).
