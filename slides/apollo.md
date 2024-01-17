@@ -166,7 +166,7 @@ const { data, loading, error } = useGetLayoutQuery({
   variables: {
     id: "123",
   },
-  skip: isOpen,
+  skip: !isOpen,
 })
 ```
 
@@ -445,6 +445,8 @@ layout: cover
 
 # Manual Cache Modification
 
+Diving deeper
+
 ---
 
 ## Updating existing data
@@ -558,7 +560,7 @@ caching. Let's take a look at some real code.
 ---
 
 ```yml
-layout:cover
+layout: cover
 ```
 
 # Using Fetch Policies
