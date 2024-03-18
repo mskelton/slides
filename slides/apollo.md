@@ -75,7 +75,7 @@ return loading ? (
 ) : null
 ```
 
-<v-clicks at="0">
+<v-clicks at="1">
 
 Whenever fetching, we always want to show a loading state.
 
@@ -356,7 +356,7 @@ mutation UpdatePolicy {
 }
 ```
 
-<v-clicks at="0">
+<v-clicks at="1">
 
 The `name` and `totalPremium` values will be updated in the cache when the
 request finishes.
