@@ -1,15 +1,17 @@
 import { defineShikiSetup } from "@slidev/types"
-import { fileURLToPath } from "node:url"
+import fs from "node:fs/promises"
 
-export default defineShikiSetup(async ({ loadTheme }) => {
+async function read(filename: string) {
+  return JSON.parse(
+    await fs.readFile(new URL(filename, import.meta.url), "utf-8"),
+  )
+}
+
+export default defineShikiSetup(async () => {
   return {
-    theme: {
-      dark: await loadTheme(
-        fileURLToPath(new URL("./tokyonight.json", import.meta.url)),
-      ),
-      light: await loadTheme(
-        fileURLToPath(new URL("./tokyolight.json", import.meta.url)),
-      ),
+    themes: {
+      dark: await read("./tokyonight.json"),
+      light: await read("./tokyolight.json"),
     },
   }
 })
